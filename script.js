@@ -18,7 +18,38 @@ let cost_num_element = document.getElementById("cost_num") // Cost to compile
 
 //Listen to compile ticket connected to function for the elaboration
 submit_btn_element.addEventListener("submit", TiketCompilation)
-reset_btn_element.addEventListener("reset", TiketReset)
+//reset_btn_element.addEventListener("reset", TiketReset)
+
+function TiketCompilation(){
+    console.log("qui")
+    let age_passeger = age_element.value
+    let km_number = km_element.value
+    let cost
+    let offer
+    // check if a reduction can be applied  
+    if (age_passeger == 2) {
+        cost=(km_number * 0.21) * (1 - 20 / 100) // to consider 20%
+        offer="Biglietto ridotto junior"
+    }
+    else if (age_passeger == 3){
+        cost=(km_number * 0.21) * (1 - 40 / 100) // to consider 40%
+        offer="Biglietto ridotto old"
+    }
+    else {
+        cost=(km_number * 0.21)
+        offer="Biglietto standard"
+    }
+    // Load data in interface
+    let passenger_name = passenger_name_element.value
+    passenger_name_element.innerHTML(passenger_name)
+    offer_type_element.innerHTML(offer)
+    let cabinet=Math.floor(Math.random()*10000) // Take an int number for cabinet
+    cabinet_num_element.innerHTML(cabinet)
+    let cod=Math.floor(Math.random()*100) // Take an int number for code CP
+    code_num_element.innerHTML(cod)
+    cost_num_element.innerHTML(cost+" "+"€")
+    event.preventDefault() //not provvide submit
+}
 
 
 
